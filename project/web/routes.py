@@ -5,9 +5,9 @@ import random
 
 app = Flask(__name__)
 
-@app.route('/tour')
-def tour():
-    return render_template('tour.html')
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def login():
@@ -17,13 +17,18 @@ def login():
 def fail():
     return render_template('login_fail.html')
 
+@app.route('/tour')
+def tour():
+    return render_template('tour.html')
+
+
 @app.route('/login',methods = ['post'])
 def login_check():
     id_ = request.form['id_']
     pw_ = request.form['pw_']
     users = check(id_, pw_)
     if users:
-        return redirect(url_for('tour'))
+        return redirect(url_for('index'))
     else:
         return redirect(url_for('login_fail'))
 
