@@ -14,7 +14,7 @@ def login():
     return render_template('login.html')
 
 @app.route('/login_fail')
-def fail():
+def login_fail():
     return render_template('login_fail.html')
 
 @app.route('/tour')
@@ -22,7 +22,7 @@ def tour():
     return render_template('tour.html')
 
 
-@app.route('/login',methods = ['post'])
+@app.route('/login_check',methods = ['post'])
 def login_check():
     id_ = request.form['id_']
     pw_ = request.form['pw_']
