@@ -20,7 +20,26 @@ def check(users_id, users_pw):
         cursor.execute(query, (users_id, users_pw))
         result = cursor.fetchone()
 
-        return result  # 조회 결과 반환 (없으면 None)
+        def find_password(users_name, users_birth):
+            conn = pymysql.connect(**config)
+            cursor = conn.cursor()
+
+            cursor.execute('''
+                SELECT password
+                FROM users
+                WHERE users_name = ? AND users_birth = ?
+            ''', (users_name, users_birth))
+            
+            result = cursor.fetchone()
+            
+            conn.close()
+
+            if result:
+                return result[0]  # 비밀번호 반환
+            else:
+                return None  # 일치하는 사용자 없음
+
+                return result  # 조회 결과 반환 (없으면 None)
 
     except pymysql.Error as e:
         print(f"Error: {e}")

@@ -21,6 +21,14 @@ def login_fail():
 def tour():
     return render_template('tour.html')
 
+@app.route('/id_find')
+def id_find():
+    return render_template('id_find.html')
+
+@app.route('/pw_find')
+def pw_find():
+    return render_template('pw_find.html')
+
 
 @app.route('/login_check',methods = ['post'])
 def login_check():
